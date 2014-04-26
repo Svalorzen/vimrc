@@ -29,8 +29,12 @@ hi Precondit guifg=MediumOrchid
 
 hi CursorLine guibg=grey20
 hi Pmenu guibg=grey20 gui=bold
-hi Search guibg=Orange
 hi Conceal guibg=black guifg=white
+
+hi Search guibg=gray65 guifg='NONE'
+hi Cursor guibg=green4
+hi IncSearch guifg=Yellow
+
 " Set fullscreen
 "set lines=30 columns=127
 set lines=999 columns=999

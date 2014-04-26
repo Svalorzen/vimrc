@@ -1,0 +1,18 @@
+[user]
+	email = svalorzen@gmail.com
+	name = Svalorzen
+[core]
+	editor = gvim
+[merge]
+	tool = gvimdiff
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+    fe = fetch
+    me = merge
+[mergetool]
+	keepBackup = false
+[push]
+	default = simple

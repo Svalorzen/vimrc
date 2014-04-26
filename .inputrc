@@ -1,0 +1,12 @@
+# Makes tabbing go around possible matches
+TAB: menu-complete
+# Makes it possible to loop backwards with ctrl+tab
+"\e[Z": "\e-1\C-i"
+# Ignores completition case
+set completion-ignore-case on
+
+# Remove beeping sounds
+set bell-style none
+
+# When tabbing links, it adds /
+set mark-symlinked-directories on

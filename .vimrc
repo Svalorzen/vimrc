@@ -54,7 +54,7 @@ set wrap            " Wraps long lines in terminal
 set linebreak       " Doesn't break words while wrapping
 
 set display=lastline    " Shows partial lines in bottom of the screen
-set cole=2              " Renders on the spot LaTeX symbols
+"set cole=2              " Renders on the spot LaTeX symbols
 
 set tabpagemax=50       " Sets sane amount of tabs to open with many files on command line
 
@@ -96,6 +96,11 @@ hi SpellBad cterm=undercurl ctermbg=red
 hi clear SpellLocal
 hi SpellLocal cterm=underline
 hi SpellCap ctermbg=DarkBlue
+hi MatchParen ctermbg=Blue
+
+hi Search ctermbg=LightGray
+hi IncSearch ctermfg=Yellow
+hi Cursor ctermbg=DarkGreen
 
 " Pink templates!
 hi link CppStructure Macro
@@ -148,12 +153,17 @@ command RemoveTrailingWhitespace call RemoveTrailingWhitespace()
 "#######################################"
 
 function! SetMarkdownOptions()
-    set filetype=markdown
-    set nocindent
-    set tw=80
+    setlocal filetype=markdown
+    setlocal nocindent
+    setlocal tw=80
 endfunction
 
-au BufNewFile,BufRead *.md call SetMarkdownOptions()
+function! SetTexOptions()
+    setlocal nocindent
+endfunction
+
+au BufNewFile,BufRead *.md  call SetMarkdownOptions()
+au BufNewFile,BufRead *.tex call SetTexOptions()
 
 "#######################################"
 "####            PLUGINS            ####"
@@ -179,6 +189,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'wincent/Command-T'
+Bundle 'wesQ3/vim-windowswap'
 filetype plugin indent on     " required!
 
 " TAGBAR
@@ -220,4 +231,4 @@ let g:EasyMotion_mapping_w = '<C-D>'
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-èòàù'
 
 " COMMAND T
-set wildignore+=*.html " To avoid including doxygen generated files, and we don't generally edit html so..
+let g:CommandTWildIgnore="*.html,build/**,html/**" " To avoid including doxygen generated files, and we don't generally edit html so..
