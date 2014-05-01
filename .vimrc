@@ -101,6 +101,7 @@ hi MatchParen ctermbg=Blue
 hi Search ctermbg=LightGray
 hi IncSearch ctermfg=Yellow
 hi Cursor ctermbg=DarkGreen
+hi Comment ctermfg=Blue
 
 " Pink templates!
 hi link CppStructure Macro
@@ -190,6 +191,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'wincent/Command-T'
 Bundle 'wesQ3/vim-windowswap'
+Bundle 'vim-scripts/DoxygenToolkit.vim'
 filetype plugin indent on     " required!
 
 " TAGBAR

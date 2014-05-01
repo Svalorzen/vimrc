@@ -20,7 +20,7 @@ hi Normal guifg=green1 guibg=Black
 hi Visual guifg=Black guibg=green1
 hi Statement guifg=Orange
 hi Type guifg=DarkOliveGreen
-hi Comment guifg=SlateBlue
+hi Comment guifg=LightSlateBlue
 hi Include guifg=MediumOrchid1
 hi Number guifg=Red
 hi String guifg=Red
