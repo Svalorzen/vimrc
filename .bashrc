@@ -200,6 +200,6 @@ gre () {
     then
         echo "No pattern given!"
     else
-        grep -ir $1 *
+        grep -ir "$1" *
     fi
 }
