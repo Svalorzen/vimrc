@@ -2,9 +2,9 @@
 	email = svalorzen@gmail.com
 	name = Svalorzen
 [core]
-	editor = gvim
+	editor = gvim -f
 [merge]
-	tool = gvimdiff
+	tool = gvimdiff -f
 [alias]
 	st = status
 	ci = commit
