@@ -199,8 +199,6 @@ nmap <F8> :TagbarToggle<CR>
 
 " AIRLINE
 let g:airline_powerline_fonts = 1
-let g:airline_symbols = get(g:, 'airline_symbols', {})
-let g:airline_symbols.space = "\ua0"
 set ttimeoutlen=50 " statusline switches back to normal mode instantly
 
 let g:mybufstatus = ''

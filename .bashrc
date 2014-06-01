@@ -12,8 +12,8 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=5000
+HISTFILESIZE=10000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -194,3 +194,12 @@ LS_COLORS='no=00:fi=00:di=01;35:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 
 # bc variables
 export BC_ENV_ARGS=~/.bcrc
+
+gre () {
+    if [ $# -lt 1 ] ;
+    then
+        echo "No pattern given!"
+    else
+        grep -ir $1 *
+    fi
+}

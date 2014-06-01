@@ -5,14 +5,15 @@ set vb t_vb=
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L
-set guioptions-=l
-set guioptions-=R
-set guioptions-=r
-set guioptions-=b
-set guioptions-=h
+set guioptions-=R  "ditto
+set guioptions-=L  "remove left-hand scroll bar
+set guioptions-=l  "ditto
+set guioptions-=b  "remove bottom scroll bar
+set guioptions-=h  "stuff about hor scroll length
 
 set cursorline
+
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 "colorscheme default
 set background=dark
