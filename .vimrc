@@ -232,3 +232,4 @@ let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-èòàù'
 
 " COMMAND T
 let g:CommandTWildIgnore="*.html,build/**,html/**" " To avoid including doxygen generated files, and we don't generally edit html so..
+let g:CommandTTraverseSCM="pwd" "Look for files in current dir, instead of going up until git repo is encountered.
