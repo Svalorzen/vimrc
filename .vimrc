@@ -240,6 +240,7 @@ set completeopt-=preview
 
 nnoremap <C-O> :YcmCompleter GoToDeclaration<CR>
 nnoremap <C-P> <C-]>
+nnoremap <C-I> <C-O>
 
 " EASYMOTION
 let g:EasyMotion_mapping_b = '<C-E>'
