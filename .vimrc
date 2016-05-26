@@ -41,6 +41,7 @@ set cindent         " As above, but customizable!!
 
 "set number         " Line numbers
 set rnu             " Line numbers relative to the cursor ( RelativeNumber )
+set nu
 
 set ignorecase      " Ignores case in searches
 set smartcase       " Uses case when there are upper case chars in patterns
@@ -84,9 +85,21 @@ set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
+" When splitting, the new window will be below
+set splitbelow
+" Or right when vsplitting
+set splitright
+
+set cursorline
+
+" Used for Gstatus
+set previewheight=30
+
 "#######################################"
 "####           HIGHLIGHTS          ####"
 "#######################################"
+
+colorscheme default
 
 hi Conceal ctermbg=black ctermfg=white
 
@@ -98,10 +111,10 @@ hi SpellLocal cterm=underline
 hi SpellCap ctermbg=DarkBlue
 hi MatchParen ctermbg=Blue
 
-hi Search ctermbg=LightGray
+hi Search ctermbg=136 ctermfg=232 cterm=NONE
 hi IncSearch ctermfg=Yellow
-hi Cursor ctermbg=DarkGreen
 hi Comment ctermfg=Blue
+hi CursorLine ctermbg=237 cterm=NONE
 
 " Pink templates!
 hi link CppStructure Macro
@@ -121,11 +134,6 @@ nnoremap <F4> :q<CR>
 " Mapping enter for newline without insert mode
 nnoremap <CR> o<ESC>
 nnoremap <S-CR> O<ESC>
-" PAGE UP / PAGE DOWN within keyboard
-" Down, next to j ( down )
-nnoremap H <C-D>
-" Up, next to k ( up )
-nnoremap L <C-U>
 " Stop search highlight using backspace.
 nnoremap <BS> :noh<return><esc>
 
@@ -167,18 +175,22 @@ au BufNewFile,BufRead *.md  call SetMarkdownOptions()
 au BufNewFile,BufRead *.tex call SetTexOptions()
 
 "#######################################"
+"####            SESSION            ####"
+"#######################################"
+
+"#######################################"
 "####            PLUGINS            ####"
 "#######################################"
 
 " Configure Vundle
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 
 " My Bundles here:
 "
@@ -186,12 +198,13 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 Bundle 'bling/vim-airline'
 Bundle 'wincent/Command-T'
 Bundle 'wesQ3/vim-windowswap'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
+Bundle 'peterhoeg/vim-qml'
+Bundle 'MarcWeber/SmartTag'
 filetype plugin indent on     " required!
 
 " TAGBAR
@@ -225,11 +238,20 @@ let g:ycm_allow_changing_updatetime = 0
 " Avoids crash for VIM bug
 set completeopt-=preview
 
+nnoremap <C-O> :YcmCompleter GoToDeclaration<CR>
+nnoremap <C-P> <C-]>
+
 " EASYMOTION
 let g:EasyMotion_mapping_b = '<C-E>'
 let g:EasyMotion_mapping_w = '<C-D>'
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-èòàù'
 
 " COMMAND T
-let g:CommandTWildIgnore="*.html,build/**,html/**" " To avoid including doxygen generated files, and we don't generally edit html so..
+let g:CommandTWildIgnore="*.o,*.html,build/**,html/**,Release/**" " To avoid including doxygen generated files, and we don't generally edit html so..
 let g:CommandTTraverseSCM="pwd" "Look for files in current dir, instead of going up until git repo is encountered.
+let g:CommandTScanDotDirectories = 1
+
+let g:CommandTFileScanner='find'
+
+" SMART TAG
+nnoremap <C-P> :call SmartTag#SmartTag("goto")<CR>

@@ -81,6 +81,11 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -139,17 +144,17 @@ cb() {
 # Aliases / functions leveraging the cb() function
 # ------------------------------------------------
 # Copy contents of a file
-function cbf() { cat "$1" | cb; }  
+function cbf() { cat "$1" | cb; }
 # Copy SSH public key
-alias cbssh="cb ~/.ssh/id_rsa.pub"  
+alias cbssh="cb ~/.ssh/id_rsa.pub"
 # Copy current working directory
-alias cbwd="pwd | cb"  
+alias cbwd="pwd | cb"
 # Copy most recent command in bash history
-alias cbhs="cat $HISTFILE | tail -n 1 | cb"  
+alias cbhs="cat $HISTFILE | tail -n 1 | cb"
 
 # Paste from clipboard ( by Sval )
 ccb(){
-	xclip -o -selection clipboard
+    xclip -o -selection clipboard
 }
 
 # Make less not use the bell
@@ -160,10 +165,13 @@ alias cls='echo -en "\033c"'
 
 alias vi="gvim"
 alias gitk="gitk --all"
+alias gitg="gitg --all"
 
 alias sl="ls"
 alias please='echo "sudo $(history -p !!)"; sudo $(history -p !!); history -s "sudo $(history -p !!)"; history -d $((HISTCMD-2)); history -w'
 alias bc="bc -l"
+# Allow sudo alias expansion
+alias sudo="sudo "
 
 # Test, funny thing to learn about commands
 echo "Did you know that:"; whatis $(ls /bin | shuf | head -1)
@@ -174,6 +182,7 @@ unpack () {
       case $1 in
           *.tar.bz2)   tar xvjf $1    ;;
           *.tar.gz)    tar xvzf $1    ;;
+          *.tar.xz)    tar xJf $1     ;;
           *.bz2)       bunzip2 $1     ;;
           *.rar)       rar x $1       ;;
           *.gz)        gunzip $1      ;;

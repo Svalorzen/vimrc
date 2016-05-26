@@ -12,9 +12,17 @@
 	co = checkout
     fe = fetch
     me = merge
+    reb = rebase
+    txt = grep --cached -Il ''
 [mergetool]
 	keepBackup = false
 [push]
 	default = simple
 [color]
     ui = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+[init]
+	templatedir = ~/.git_template

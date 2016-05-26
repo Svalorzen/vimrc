@@ -32,9 +32,11 @@ hi CursorLine guibg=grey20
 hi Pmenu guibg=grey20 gui=bold
 hi Conceal guibg=black guifg=white
 
-hi Search guibg=gray65 guifg='NONE'
+hi Search guibg=LightGoldenRod guifg=gray15
 hi Cursor guibg=green4
 hi IncSearch guifg=Yellow
+
+hi TabLineSel guibg=Red
 
 " Set fullscreen
 "set lines=30 columns=127
@@ -65,9 +67,12 @@ function TabRight()
    endif
 endfunction
 
+" Maps C-W to close tab
+nnoremap <C-W> :tabclose<CR>
+
 " Mapping of functions
-map <silent><C-S-Right> :execute TabRight()<CR>
-map <silent><C-S-Left> :execute TabLeft()<CR>
+noremap <silent><C-Right> :execute TabRight()<CR>
+noremap <silent><C-Left> :execute TabLeft()<CR>
 
 function RelativePathString(file)
     let filelist=split(a:file,'/')
