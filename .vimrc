@@ -8,6 +8,7 @@ set nocompatible    " Vi Incompatibility
 let mapleader = " "
 set backspace=indent,eol,start
 syntax on
+syntax spell toplevel
 
 " Actual shit
 set clipboard=unnamedplus   " This sets the auto yanking into the clipboard!
@@ -39,9 +40,8 @@ set autoindent      " Copy indent from the current line to new ones
 set cindent         " As above, but customizable!!
 "set copyindent     " Copies indent chars into new lines
 
-"set number         " Line numbers
 set rnu             " Line numbers relative to the cursor ( RelativeNumber )
-set nu
+set nu              " With current line number
 
 set ignorecase      " Ignores case in searches
 set smartcase       " Uses case when there are upper case chars in patterns
@@ -169,6 +169,7 @@ endfunction
 
 function! SetTexOptions()
     setlocal nocindent
+    setlocal tw=100
 endfunction
 
 au BufNewFile,BufRead *.md  call SetMarkdownOptions()
@@ -205,6 +206,8 @@ Bundle 'wesQ3/vim-windowswap'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'peterhoeg/vim-qml'
 Bundle 'MarcWeber/SmartTag'
+Bundle 'SirVer/ultisnips'
+Bundle 'dhruvasagar/vim-table-mode'
 filetype plugin indent on     " required!
 
 " TAGBAR
@@ -248,11 +251,29 @@ let g:EasyMotion_mapping_w = '<C-D>'
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-èòàù'
 
 " COMMAND T
-let g:CommandTWildIgnore="*.o,*.html,build/**,html/**,Release/**" " To avoid including doxygen generated files, and we don't generally edit html so..
+" Here we specify some files to ignore. In particular:
+" - Avoid including doxygen generated files/html files.
+" - Avoid object files, and possibly binary files, libraries.
+" - Make and Cmake generated files.
+let g:CommandTWildIgnore="*.html,build/**,html/**,*.o,*.make,*.cmake,*.bin,*.a,*.so,*.aux"
 let g:CommandTTraverseSCM="pwd" "Look for files in current dir, instead of going up until git repo is encountered.
 let g:CommandTScanDotDirectories = 1
+let g:CommandTFileScanner="find"
 
-let g:CommandTFileScanner='find'
+" ULTISNIPS
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" TABLE MODE
+
+" Makes corners pluses instead of pipes
+let g:table_mode_corner_corner = '+'
 
 " SMART TAG
 nnoremap <C-P> :call SmartTag#SmartTag("goto")<CR>
