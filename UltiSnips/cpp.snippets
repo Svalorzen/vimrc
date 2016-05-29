@@ -1,0 +1,165 @@
+snippet main "main function" b
+int main() {
+	$0
+
+	return 0;
+}
+endsnippet
+
+snippet ios "#include <iostream>" b
+#include <iostream>$0
+endsnippet
+
+snippet vec "#include <vector>" b
+#include <vector>$0
+endsnippet
+
+snippet algo "#include <algorithm>" b
+#include <algorithm>$0
+endsnippet
+
+snippet map "#include <unordered_map>" b
+#include <unordered_map>$0
+endsnippet
+
+snippet incl "Include" b
+#include <$1>$0
+endsnippet
+
+snippet incli "Loc Include" b
+#include "$1"$0
+endsnippet
+
+snippet tp "Template" b
+template <typename ${1:T}>$0
+endsnippet
+
+snippet str "Struct" b
+struct $1 {
+	$0
+};
+endsnippet
+
+snippet cl "Class" b
+class $1 {
+	public:
+		$1();$0
+
+	private:
+};
+endsnippet
+
+snippet qobj "QObject son" b
+#include <QObject>
+
+class $1 : public QObject
+{
+	Q_OBJECT
+
+	public:
+		$1();$0
+
+	private:
+};
+endsnippet
+
+snippet guard "Header Guard" b
+#ifndef $1_HEADER_FILE
+#define $1_HEADER_FILE
+
+$0
+
+#endif
+endsnippet
+
+snippet ns "Namespace" b
+namespace $1${1/.+/ /}{
+	$0
+}
+endsnippet
+
+snippet if "Short if block" b
+if ( $1 )
+	$0
+endsnippet
+
+snippet iff "Long if block" b
+if ( $1 ) {
+	$2
+}
+$0
+endsnippet
+
+snippet ifel "Short if else" b
+if ( $1 )
+	$2
+else
+	$0
+endsnippet
+
+snippet iffel "Long if, short else" b
+if ( $1 ) {
+	$2
+}
+else
+	$0
+endsnippet
+
+snippet ifell "Short if, long else" b
+if ( $1 )
+	$2
+else {
+	$3
+}
+$0
+endsnippet
+
+snippet iffell "Long if else" b
+if ( $1 ) {
+	$2
+}
+else {
+	$3
+}
+$0
+endsnippet
+
+snippet sw "Switch" b
+switch ( $1 ) {
+	case $2
+	${3:default: $4}
+}
+$0
+endsnippet
+
+snippet beg "begin" w
+std::begin($1)$0
+endsnippet
+
+snippet end "end" w
+std::end($1)$0
+endsnippet
+
+snippet for "Short for loop" b
+for ( $1; $2; $3 )
+	$0
+endsnippet
+
+snippet forr "Long for loop" b
+for ( $1; $2; $3 ) {
+	$4
+}
+$0
+endsnippet
+
+snippet fora "Auto for loop" b
+for ( $1 : $2 )
+	$0
+endsnippet
+
+snippet forra "Auto Long for loop" b
+for ( $1 : $2 ) {
+	$3
+}
+$0
+endsnippet
