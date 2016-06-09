@@ -241,9 +241,15 @@ let g:ycm_allow_changing_updatetime = 0
 " Avoids crash for VIM bug
 set completeopt-=preview
 
+" Go to declaration
 nnoremap <C-O> :YcmCompleter GoToDeclaration<CR>
-nnoremap <C-P> <C-]>
-nnoremap <C-I> <C-O>
+" Go to definition uses Smart Tag (below)
+" with C-P
+" Go back in jump tag
+nnoremap <C-U> <C-O>
+" Go forward in jump tag
+" C-I by default
+
 
 " EASYMOTION
 let g:EasyMotion_mapping_b = '<C-E>'
