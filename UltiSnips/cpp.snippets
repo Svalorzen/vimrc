@@ -73,7 +73,7 @@ $0
 endsnippet
 
 snippet ns "Namespace" b
-namespace $1${1/.+/ /}{
+namespace $1`!p snip.rv = " {" if t[1] else "{"`
 	$0
 }
 endsnippet
