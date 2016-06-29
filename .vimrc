@@ -196,18 +196,32 @@ Bundle 'VundleVim/Vundle.vim'
 " My Bundles here:
 "
 " original repos on github
+" Git integration
 Bundle 'tpope/vim-fugitive'
+" Semantic autocompletion
 Bundle 'Valloric/YouCompleteMe'
+" Fast jumping around
 Bundle 'Lokaltog/vim-easymotion'
+" Easy file overview
 Bundle 'majutsushi/tagbar'
+" Cool statusline
 Bundle 'bling/vim-airline'
+" Easy opening files
 Bundle 'wincent/Command-T'
+" Easy swapping windows
 Bundle 'wesQ3/vim-windowswap'
+" Dox autocompletion
 Bundle 'vim-scripts/DoxygenToolkit.vim'
+" Qml syntax highlighting
 Bundle 'peterhoeg/vim-qml'
+" Smart go to implementation
 Bundle 'MarcWeber/SmartTag'
+" Snip autocompletion
 Bundle 'SirVer/ultisnips'
+" Generate tables easily
 Bundle 'dhruvasagar/vim-table-mode'
+" Makes cw consistent with other commands
+Bundle 'ap/vim-you-keep-using-that-word'
 filetype plugin indent on     " required!
 
 " TAGBAR
