@@ -2,7 +2,7 @@
 
 if [ "$#" -eq 1 ]
 then
-    cp "$1" ~
+    cp -a "$1" ~
     exit 0
 fi
 
