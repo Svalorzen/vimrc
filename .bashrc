@@ -15,6 +15,9 @@ shopt -s histappend
 HISTSIZE=50000
 HISTFILESIZE=50000
 
+# Always write commands to history, do not wait until closed
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a;"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -136,16 +139,6 @@ cb() {
     fi
   fi
 }
-# Aliases / functions leveraging the cb() function
-# ------------------------------------------------
-# Copy contents of a file
-function cbf() { cat "$1" | cb; }
-# Copy SSH public key
-alias cbssh="cb ~/.ssh/id_rsa.pub"
-# Copy current working directory
-alias cbwd="pwd | cb"
-# Copy most recent command in bash history
-alias cbhs="cat $HISTFILE | tail -n 1 | cb"
 
 # Paste from clipboard ( by Sval )
 ccb(){
@@ -174,6 +167,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
+# Prompt before overwrite
 alias mv="mv -i"
 
 # Test, funny thing to learn about commands
