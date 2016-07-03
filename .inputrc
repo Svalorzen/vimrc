@@ -14,7 +14,7 @@ set menu-complete-display-prefix on
 set colored-stats on
 
 # Makes it possible to loop backwards with ctrl+tab
-"\e[Z": "\e-1\C-i"
+"\e[Z": menu-complete-backward
 
 # Ignores completition case
 set completion-ignore-case on
