@@ -211,3 +211,22 @@ gre () {
         grep -Iir "$1" *
     fi
 }
+
+swap () {
+    if [ $# -lt 2 ] ;
+    then
+        echo "Usage: swap file1 file2"
+        return
+    fi
+    tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
+    command mv "$1" "$tmpfile" && command mv "$2" "$1" && command mv "$tmpfile" "$2"
+}
+
+
+export NVM_DIR="/home/svalorzen/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+alias mplayer="mplayer -vo x11"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$HOME/.local/bin:$PATH"

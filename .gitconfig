@@ -1,6 +1,6 @@
 [user]
-	email = svalorzen@gmail.com
-	name = Svalorzen
+	email = svalorzen@develer.com
+	name = Eugenio Bargiacchi
 [core]
 	editor = gvim -f
 [merge]
@@ -13,13 +13,14 @@
     fe = fetch
     me = merge
     reb = rebase
-    txt = grep --cached -Il ''
+    txt = ! cd ${GIT_PREFIX:-.} && git grep --cached -Il '' | xargs file | grep text | cut -d: -f1
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]"
 [mergetool]
 	keepBackup = false
 [push]
 	default = simple
-[color]
-    ui = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean %f

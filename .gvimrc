@@ -13,7 +13,7 @@ set guioptions-=h  "stuff about hor scroll length
 
 set cursorline
 
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
 
 "colorscheme default
 set background=dark

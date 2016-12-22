@@ -95,6 +95,12 @@ set cursorline
 " Used for Gstatus
 set previewheight=30
 
+" Activate undo for closed files
+set undofile                " Save undo's after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+
 "#######################################"
 "####           HIGHLIGHTS          ####"
 "#######################################"
@@ -123,6 +129,9 @@ hi link CppStructure Macro
 "####            REMAPS             ####"
 "#######################################"
 
+" Unmap shift+arrows from page-down/up
+noremap <S-Up> <Up>
+noremap <S-Down> <Down>
 " Mapping for switching windows when splitting
 noremap <F2> <C-W>
 " Mapping for saving with F3
@@ -172,8 +181,13 @@ function! SetTexOptions()
     setlocal tw=100
 endfunction
 
+function! SetPriOptions()
+    set syntax=idlang
+endfunction
+
 au BufNewFile,BufRead *.md  call SetMarkdownOptions()
 au BufNewFile,BufRead *.tex call SetTexOptions()
+au BufNewFile,BufRead *.pri call SetPriOptions()
 
 "#######################################"
 "####            SESSION            ####"
@@ -252,6 +266,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_allow_changing_updatetime = 0
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_show_diagnostics_ui = 1
 " Avoids crash for VIM bug
 set completeopt-=preview
 
@@ -268,14 +284,14 @@ nnoremap <C-U> <C-O>
 " EASYMOTION
 let g:EasyMotion_mapping_b = '<C-E>'
 let g:EasyMotion_mapping_w = '<C-D>'
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-èòàù'
+let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz+,.-[]/\;'"
 
 " COMMAND T
 " Here we specify some files to ignore. In particular:
 " - Avoid including doxygen generated files/html files.
 " - Avoid object files, and possibly binary files, libraries.
 " - Make and Cmake generated files.
-let g:CommandTWildIgnore="*.html,build/**,html/**,*.o,*.make,*.cmake,*.bin,*.a,*.so,*.aux"
+let g:CommandTWildIgnore="*.html,build/**,html/**,*.o,*.make,*.cmake,*.bin,*.a,*.so,*.aux,*.svg"
 let g:CommandTTraverseSCM="pwd" "Look for files in current dir, instead of going up until git repo is encountered.
 let g:CommandTScanDotDirectories = 1
 let g:CommandTFileScanner="find"
@@ -294,6 +310,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Makes corners pluses instead of pipes
 let g:table_mode_corner_corner = '+'
+let g:table_mode_header_fillchar="="
 
 " SMART TAG
 nnoremap <C-P> :call SmartTag#SmartTag("goto")<CR>
