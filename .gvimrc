@@ -33,17 +33,14 @@ hi Pmenu guibg=grey20 gui=bold
 hi Conceal guibg=black guifg=white
 
 hi Search guibg=LightGoldenRod guifg=gray15
+hi IncSearch guifg=green4
 hi Cursor guibg=green4
-hi IncSearch guifg=Yellow
 
 hi TabLineSel guibg=Red
 
 " Set fullscreen
 "set lines=30 columns=127
 set lines=999 columns=999
-
-" Creates command ,cd that sets window directory as the same of the opened file
-nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Creates ctr-t to open new tab
 map <C-T> :tabnew<CR>

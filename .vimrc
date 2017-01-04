@@ -112,7 +112,7 @@ hi SpellCap ctermbg=DarkBlue
 hi MatchParen ctermbg=Blue
 
 hi Search ctermbg=136 ctermfg=232 cterm=NONE
-hi IncSearch ctermfg=Yellow
+hi IncSearch ctermfg=70
 hi Comment ctermfg=Blue
 hi CursorLine ctermbg=237 cterm=NONE
 
@@ -134,6 +134,9 @@ nnoremap <F4> :q<CR>
 " Mapping enter for newline without insert mode
 nnoremap <CR> o<ESC>
 nnoremap <S-CR> O<ESC>
+" In the quickfix window, <CR> is used to jump to the error under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " Stop search highlight using backspace.
 nnoremap <BS> :noh<return><esc>
 
@@ -147,6 +150,9 @@ nnoremap , :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 " Spellchecking
 nnoremap <Leader>sc :setlocal spell spelllang=en_us<CR>
+
+" Creates command ,cd that sets window directory as the same of the opened file
+nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 "#######################################"
 "####           FUNCTIONS           ####"
@@ -224,6 +230,12 @@ Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'ap/vim-you-keep-using-that-word'
 filetype plugin indent on     " required!
 
+" VIM FUGITIVE
+" Add :Ggr command that opens the quickfix window with grep findings
+command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+" Map Ggr to C-F of current word
+nnoremap <C-F> :Ggr <cword><CR>
+
 " TAGBAR
 nmap <F8> :TagbarToggle<CR>
 
@@ -264,11 +276,15 @@ nnoremap <C-U> <C-O>
 " Go forward in jump tag
 " C-I by default
 
+" WindowSwap
+let g:windowswap_map_keys = 0 "prevent default bindings
+nnoremap <silent> <F2>y :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <F2>p :call WindowSwap#DoWindowSwap()<CR>
 
 " EASYMOTION
 let g:EasyMotion_mapping_b = '<C-E>'
 let g:EasyMotion_mapping_w = '<C-D>'
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-èòàù'
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-''"\/|'
 
 " COMMAND T
 " Here we specify some files to ignore. In particular:
@@ -294,6 +310,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Makes corners pluses instead of pipes
 let g:table_mode_corner_corner = '+'
+let g:table_mode_header_fillchar="="
 
 " SMART TAG
 nnoremap <C-P> :call SmartTag#SmartTag("goto")<CR>
