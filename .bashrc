@@ -166,6 +166,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+alias vig="vi \$(git txt)"
 
 # Prompt before overwrite
 alias mv="mv -i"
@@ -208,7 +209,8 @@ gre () {
     then
         echo "No pattern given!"
     else
-        grep -Iir "$1" *
+        # We copy all eventual additional arguments in, and the last thing is our pattern
+        grep -Iir ${@:1:$#-1} "${!#}" *
     fi
 }
 
@@ -228,5 +230,17 @@ export NVM_DIR="/home/svalorzen/.nvm"
 
 alias mplayer="mplayer -vo x11"
 
+activate () {
+    if [ $# -lt 1 ] ;
+    then
+        echo "Usage: activate venv_name"
+        return
+    fi
+    source "$1/bin/activate"
+}
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$HOME/.local/bin:$PATH"
+
+## Enable direnv stuff
+eval "$(direnv hook bash)"

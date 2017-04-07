@@ -273,6 +273,12 @@ set completeopt-=preview
 
 " Go to declaration
 nnoremap <C-O> :YcmCompleter GoToDeclaration<CR>
+" Same, in new tab
+nnoremap <leader><C-O> :sp<CR>:YcmCompleter GoToDeclaration<CR><C-W>T
+" Go to include file
+nnoremap <C-L> :YcmCompleter GoToInclude<CR>
+" Same, in new tab
+nnoremap <leader><C-L> :sp<CR>:YcmCompleter GoToInclude<CR><C-W>T
 " Go to definition uses Smart Tag (below)
 " with C-P
 " Go back in jump tag
@@ -280,11 +286,15 @@ nnoremap <C-U> <C-O>
 " Go forward in jump tag
 " C-I by default
 
+" WindowSwap
+let g:windowswap_map_keys = 0 "prevent default bindings
+nnoremap <silent> <F2>y :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <F2>p :call WindowSwap#DoWindowSwap()<CR>
 
 " EASYMOTION
 let g:EasyMotion_mapping_b = '<C-E>'
 let g:EasyMotion_mapping_w = '<C-D>'
-let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz+,.-[]/\;'"
+let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz=,.-[]/\;'"
 
 " COMMAND T
 " Here we specify some files to ignore. In particular:
@@ -314,3 +324,4 @@ let g:table_mode_header_fillchar="="
 
 " SMART TAG
 nnoremap <C-P> :call SmartTag#SmartTag("goto")<CR>
+nnoremap <leader><C-P> :sp<CR>:call SmartTag#SmartTag("goto")<CR><C-W>T
