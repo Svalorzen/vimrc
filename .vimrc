@@ -238,6 +238,9 @@ Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'ap/vim-you-keep-using-that-word'
 filetype plugin indent on     " required!
 
+" FUGITIVE
+nmap <F9> :Gblame<CR>
+
 " TAGBAR
 nmap <F8> :TagbarToggle<CR>
 

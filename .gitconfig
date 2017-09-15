@@ -17,6 +17,7 @@
     ignore = update-index --assume-unchanged
     unignore = update-index --no-assume-unchanged
     ignored = !git ls-files -v | grep "^[[:lower:]]"
+    lg = log --color --date=local --pretty=format:'%Cred%h%Creset -%Cgreen %ad (%<(11)%ar) %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit
 [mergetool]
 	keepBackup = false
 [push]
