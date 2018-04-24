@@ -6,6 +6,7 @@ set nocompatible    " Vi Incompatibility
 
 " Fix new VIM defaults
 let mapleader = " "
+let maplocalleader = " "
 set backspace=indent,eol,start
 syntax on
 syntax spell toplevel
@@ -154,6 +155,9 @@ nnoremap <Leader>sc :setlocal spell spelllang=en_us<CR>
 " Creates command ,cd that sets window directory as the same of the opened file
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
+" Select last pasted text
+nnoremap gp `[v`]
+
 "#######################################"
 "####           FUNCTIONS           ####"
 "#######################################"
@@ -162,6 +166,12 @@ function! RemoveTrailingWhitespace()
     %s/\s\+$//e
 endfunction
 command RemoveTrailingWhitespace call RemoveTrailingWhitespace()
+
+"#######################################"
+"####         ABBREVIATIONS         ####"
+"#######################################"
+
+iab xdate <c-r>=strftime("%d/%m/%Y")<cr>
 
 "#######################################"
 "####          AUTOCOMMANDS         ####"
@@ -228,6 +238,11 @@ Bundle 'SirVer/ultisnips'
 Bundle 'dhruvasagar/vim-table-mode'
 " Makes cw consistent with other commands
 Bundle 'ap/vim-you-keep-using-that-word'
+" Nice number incrementing
+Bundle 'triglav/vim-visual-increment'
+" Automatic latex compilation
+Bundle 'lervag/vimtex'
+
 filetype plugin indent on     " required!
 
 " VIM FUGITIVE
@@ -269,6 +284,8 @@ set completeopt-=preview
 
 " Go to declaration
 nnoremap <C-O> :YcmCompleter GoToDeclaration<CR>
+" Go to include file
+nnoremap <C-L> :YcmCompleter GoToInclude<CR>
 " Go to definition uses Smart Tag (below)
 " with C-P
 " Go back in jump tag
@@ -284,7 +301,7 @@ nnoremap <silent> <F2>p :call WindowSwap#DoWindowSwap()<CR>
 " EASYMOTION
 let g:EasyMotion_mapping_b = '<C-E>'
 let g:EasyMotion_mapping_w = '<C-D>'
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz+,.-''"\/|'
+let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz=,.-[]/\;'"
 
 " COMMAND T
 " Here we specify some files to ignore. In particular:
@@ -314,3 +331,9 @@ let g:table_mode_header_fillchar="="
 
 " SMART TAG
 nnoremap <C-P> :call SmartTag#SmartTag("goto")<CR>
+nnoremap <Leader><C-P> :tab split<CR>:call SmartTag#SmartTag("goto")<CR>
+
+" VIMTEX
+let g:vimtex_enabled=1
+" We use latex for tex
+let g:tex_flavor = 'latex'

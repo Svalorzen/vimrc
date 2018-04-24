@@ -3,6 +3,7 @@
 	name = Svalorzen
 [core]
 	editor = gvim -f
+	excludesfile = ~/.gitignore
 [merge]
 	tool = gvimdiff -f
 [alias]
@@ -22,7 +23,8 @@
     ui = true
 [filter "lfs"]
 	required = true
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [init]
 	templatedir = ~/.git_template

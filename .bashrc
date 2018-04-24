@@ -166,6 +166,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+alias vig="vi \$(git txt)"
 
 # Prompt before overwrite
 alias mv="mv -i"
