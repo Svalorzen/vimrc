@@ -96,6 +96,13 @@ set cursorline
 " Used for Gstatus
 set previewheight=30
 
+" Enable persistent undos
+set undofile
+set undodir=~/.vim/undodir
+
+" Ignore camelcase for file names
+set wildignorecase
+
 "#######################################"
 "####           HIGHLIGHTS          ####"
 "#######################################"
@@ -177,6 +184,11 @@ iab xdate <c-r>=strftime("%d/%m/%Y")<cr>
 "####          AUTOCOMMANDS         ####"
 "#######################################"
 
+function! SetTxTOptions()
+    setlocal filetype=txt
+    setlocal nocindent
+endfunction
+
 function! SetMarkdownOptions()
     setlocal filetype=markdown
     setlocal nocindent
@@ -186,8 +198,10 @@ endfunction
 function! SetTexOptions()
     setlocal nocindent
     setlocal tw=100
+    nnoremap <buffer> <F5> :VimtexCompileSS<CR>
 endfunction
 
+au BufNewFile,BufRead *.txt call SetTxTOptions()
 au BufNewFile,BufRead *.md  call SetMarkdownOptions()
 au BufNewFile,BufRead *.tex call SetTexOptions()
 
@@ -284,12 +298,15 @@ set completeopt-=preview
 
 " Go to declaration
 nnoremap <C-O> :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader><C-O> :tab split<CR>
 " Go to include file
-nnoremap <C-L> :YcmCompleter GoToInclude<CR>
+nnoremap <C-L> :YcmCompleter GoToInclude<CR>:YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader><C-L> :tab split<CR>:YcmCompleter GoToInclude<CR>:YcmCompleter GoToDeclaration<CR>
 " Go to definition uses Smart Tag (below)
 " with C-P
 " Go back in jump tag
 nnoremap <C-U> <C-O>
+nnoremap <Leader><C-U>  :tab split<CR><C-O>
 " Go forward in jump tag
 " C-I by default
 

@@ -71,7 +71,14 @@ nnoremap <C-W> :tabclose<CR>
 noremap <silent><C-Right> :execute TabRight()<CR>
 noremap <silent><C-Left> :execute TabLeft()<CR>
 
+au TabEnter * let t:current = 1
+au TabLeave * let t:current = 0
+
 function RelativePathString(file)
+    if !exists('t:current') || !t:current
+        return ""
+    endif
+
     let filelist=split(a:file,'/')
     " Check for new file
     if len(filelist) == 0

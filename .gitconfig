@@ -28,3 +28,7 @@
 	process = git-lfs filter-process
 [init]
 	templatedir = ~/.git_template
+[gui]
+	recentrepo = /home/svalorzen/Libraries/Self/AIToolbox
+[cola]
+	spellcheck = false
